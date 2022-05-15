@@ -1,0 +1,133 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <h1 class="display-4">Inline SVG Labs</h1>
+    <p>I've done some testing of using inline SVG instead of loading SVG files as an image or as part of a CSS definition.</p>
+    
+    <h3>Pros</h3>
+    <ul>
+        <li>Better support for manipulation of the image at runtime.</li>
+        <li>No need for several color versions of an icon, since the color is based on the parent HTML element.</li>
+        <li>Less network traffic overhead, since all icons are inline, thus piggybacking on the document.</li>
+        <li>Better performance.</li>
+    </ul>
+    <h3>Cons</h3>
+    <ul>
+        <li>Somewhat trickier to implement.</li>
+        <li>The specific page payload is slightly bigger.</li>
+        <li>No caching of icons, since they're part of the document.</li>
+        <li>Generates a tiny bit of extra server load when fetching and processing the icons.</li>
+    </ul>
+    <p>Facebook, Instagram and Twitter have all moved most of their icons to using inline SVG.</p>
+
+
+
+    <section class="card">
+        <div class="card-header">
+            <h2>Buttons</h2>
+        </div>
+        <div class="card-body">
+            <p>
+                Testing some buttons. The base design uses Bootstrap. Since the SVG root node is rewritten, we inject 'currentColor' as fill attribute, making the icons inherit the text color of the parent HTML element, regardless of how it was originally formatted.
+                If there's other colors defined within the canvas itself, that will override the 'currentColor'.
+            </p>
+
+            <div>
+                <button type="button" class="btn btn-primary">
+                    <svg-icon icon-name="brands/bootstrap" height="1em" width="1em" />
+                    Primary
+                </button>
+                <button type="button" class="btn btn-secondary">
+                    <svg-icon icon-name="solid/angle-right" height="1em" width="1em" />
+                    Secondary
+                </button>
+                <button type="button" class="btn btn-success">
+                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    Success
+                </button>
+                <button type="button" class="btn btn-danger">
+                    <svg-icon icon-name="brands/bitbucket" height="1em" width="1em" />
+                    Danger
+                </button>
+                <button type="button" class="btn btn-warning">
+                    <svg-icon icon-name="browsers/firefox" height="1em" width="1em" fill="#ffffff" />
+                    Warning
+                </button>
+                <button type="button" class="btn btn-info">
+                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    Info
+                </button>
+                <button type="button" class="btn btn-light">
+                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    Light
+                </button>
+                <button type="button" class="btn btn-dark">
+                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    Dark
+                </button>
+
+                <button type="button" class="btn btn-link">
+                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    Link
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-header">
+            <h2>Modifications</h2>
+        </div>
+        <div class="card-body">
+            <p>It's possible to change color, size, and other properties on the fly using code without having to provide several unique SVG files.</p>
+            <span style="color: hsla(0, 100%, 50%, .5);">
+                <svg-icon icon-name="solid/brain" height="2em" width="2em" />
+            </span>
+            <span style="color: green;">
+                <svg-icon icon-name="solid/brain" height="4em" width="4em" />
+            </span>
+            <span style="color: blue;">
+                <svg-icon icon-name="solid/brain" height="6em" width="6em" />
+            </span>
+
+            <p>It's also possible to rotate the individual icon, using CSS. The following buttons are all using the same svg file, but rotates it as part of the CSS.</p>
+            <div>
+                <button type="button" class="btn btn-primary">
+                    <svg-icon icon-name="solid/angle-left" height="2em" width="2em" />
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <svg-icon icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(90deg)" />
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <svg-icon icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(180deg)" />
+                </button>
+                <button type="button" class="btn btn-primary">
+                    <svg-icon icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(270deg)" />
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section class="card">
+        <div class="card-header">
+            <h2>Exceptions</h2>
+        </div>
+        <div class="card-body">
+            <p>If a debug flag is enabled, the svg file will include an attribute containing an exception if the application isn't able to load the file or if it's malformed.</p>
+            <div class="card" style="width: 18rem; text-align: left">
+                <div class="card-body">
+                    <h5 class="card-title">Exceptions</h5>
+                    <ul class="list-group">
+                        <li class="list-group-item">ArgumentNullException: <svg-icon height="1em" width="1em" /></li>
+                        <li class="list-group-item">FileNotFoundException: <svg-icon icon-name="fgjmvdlögjmd" /></li>
+                        <li class="list-group-item">XmlException: <svg-icon icon-name="brands/test" /></li>
+                    </ul>
+                </div>
+            </div>
+            <p>Regardless of the debug state, the height and width of the inline SVG is set to 0 if failing to load. No 404 or similar status code will reach the visitor - only an empty inline SVG element.</p>
+        </div>
+    </section>
+</div>
