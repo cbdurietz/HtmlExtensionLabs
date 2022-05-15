@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace HtmlExtensionLabs.TagHelpers
+namespace Taggarna.HtmlTagHelpers
 {
     public class EmailTagHelper : TagHelper
     {

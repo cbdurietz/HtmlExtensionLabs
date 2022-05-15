@@ -1,9 +1,9 @@
 ﻿using HtmlAgilityPack;
-using Microsoft.AspNetCore.Razor.TagHelpers;
 using System.Xml;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace HtmlExtensionLabs.TagHelpers
+namespace Taggarna.HtmlTagHelpers
 {
     public class SvgIconTagHelper : TagHelper
     {
@@ -103,7 +103,7 @@ namespace HtmlExtensionLabs.TagHelpers
             }
         }
 
-        private bool IsValidSvg(string str)
+        private static bool IsValidSvg(string str)
         {
             try
             {

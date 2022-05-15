@@ -5,7 +5,7 @@
 <div class="container">
     <h1 class="display-4">Inline SVG Labs</h1>
     <p>I've done some testing of using inline SVG instead of loading SVG files as an image or as part of a CSS definition.</p>
-    
+
     <h3>Pros</h3>
     <ul>
         <li>Better support for manipulation of the image at runtime.</li>
@@ -21,6 +21,8 @@
         <li>Generates a tiny bit of extra server load when fetching and processing the icons.</li>
     </ul>
     <p>Facebook, Instagram and Twitter have all moved most of their icons to using inline SVG.</p>
+    
+    <p>At the moment, the implementation is done as a TagHelper, but there might be better to create a Partial View View Component </p>
 
 
 
@@ -130,4 +132,7 @@
             <p>Regardless of the debug state, the height and width of the inline SVG is set to 0 if failing to load. No 404 or similar status code will reach the visitor - only an empty inline SVG element.</p>
         </div>
     </section>
+
+    <p><email mail-to="john.doe" /></p>
+
 </div>
