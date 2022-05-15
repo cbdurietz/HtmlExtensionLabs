@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
-using System.Threading.Tasks;
 
 namespace HtmlExtensionLabs.TagHelpers
 {
@@ -12,6 +11,7 @@ namespace HtmlExtensionLabs.TagHelpers
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             output.TagName = "a";
+            output.TagMode = TagMode.StartTagAndEndTag;
 
             var address = MailTo + "@" + EmailDomain;
             output.Attributes.SetAttribute("href", "mailto:" + address);
