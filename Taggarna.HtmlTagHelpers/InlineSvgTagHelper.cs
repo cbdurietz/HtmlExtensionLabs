@@ -34,7 +34,7 @@ namespace Taggarna.HtmlTagHelpers
                 // Prevent traversing outside of the defined Icon Store.
                 if (IconName.Contains(".."))
                 {
-                    throw new ArgumentOutOfRangeException(); //TODO: There's probably a better exception for this, too.
+                    throw new ArgumentOutOfRangeException(); //TODO: There's probably a better exception for this, but this works for now.
                 }
 
                 doc.Load(iconFilePath);
