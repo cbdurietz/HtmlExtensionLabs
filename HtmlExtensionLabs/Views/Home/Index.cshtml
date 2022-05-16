@@ -38,40 +38,40 @@
 
             <div>
                 <button type="button" class="btn btn-primary">
-                    <svg-icon icon-name="brands/bootstrap" height="1em" width="1em" />
+                    <inline-svg icon-name="brands/bootstrap" height="1em" width="1em"/>
                     Primary
                 </button>
                 <button type="button" class="btn btn-secondary">
-                    <svg-icon icon-name="solid/angle-right" height="1em" width="1em" />
+                    <inline-svg icon-name="solid/angle-right" height="1em" width="1em" />
                     Secondary
                 </button>
                 <button type="button" class="btn btn-success">
-                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    <inline-svg icon-name="solid/angle-left" height="1em" width="1em" />
                     Success
                 </button>
                 <button type="button" class="btn btn-danger">
-                    <svg-icon icon-name="brands/bitbucket" height="1em" width="1em" />
+                    <inline-svg icon-name="brands/bitbucket" height="1em" width="1em" />
                     Danger
                 </button>
                 <button type="button" class="btn btn-warning">
-                    <svg-icon icon-name="browsers/firefox" height="1em" width="1em" fill="#ffffff" />
+                    <inline-svg icon-name="browsers/firefox" height="1em" width="1em" fill="#ffffff" />
                     Warning
                 </button>
                 <button type="button" class="btn btn-info">
-                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    <inline-svg icon-name="solid/angle-left" height="1em" width="1em" />
                     Info
                 </button>
                 <button type="button" class="btn btn-light">
-                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    <inline-svg icon-name="solid/angle-left" height="1em" width="1em" />
                     Light
                 </button>
                 <button type="button" class="btn btn-dark">
-                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    <inline-svg icon-name="solid/angle-left" height="1em" width="1em" />
                     Dark
                 </button>
 
                 <button type="button" class="btn btn-link">
-                    <svg-icon icon-name="solid/angle-left" height="1em" width="1em" />
+                    <inline-svg icon-name="solid/angle-left" height="1em" width="1em" />
                     Link
                 </button>
             </div>
@@ -86,28 +86,28 @@
         <div class="card-body">
             <p>It's possible to change color, size, and other properties on the fly using code without having to provide several unique SVG files.</p>
             <span style="color: hsla(0, 100%, 50%, .5);">
-                <svg-icon icon-name="solid/brain" height="2em" width="2em" />
+                <inline-svg icon-name="solid/brain" height="2em" width="2em" />
             </span>
             <span style="color: green;">
-                <svg-icon icon-name="solid/brain" height="4em" width="4em" />
+                <inline-svg icon-name="solid/brain" height="4em" width="4em" />
             </span>
             <span style="color: blue;">
-                <svg-icon icon-name="solid/brain" height="6em" width="6em" />
+                <inline-svg icon-name="solid/brain" height="6em" width="6em" />
             </span>
 
             <p>It's also possible to rotate the individual icon, using CSS. The following buttons are all using the same svg file, but rotates it as part of the CSS.</p>
             <div>
                 <button type="button" class="btn btn-primary">
-                    <svg-icon icon-name="solid/angle-left" height="2em" width="2em" />
+                    <inline-svg icon-name="solid/angle-left" height="2em" width="2em" />
                 </button>
                 <button type="button" class="btn btn-primary">
-                    <svg-icon icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(90deg)" />
+                    <inline-svg icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(90deg)" />
                 </button>
                 <button type="button" class="btn btn-primary">
-                    <svg-icon icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(180deg)" />
+                    <inline-svg icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(180deg)" />
                 </button>
                 <button type="button" class="btn btn-primary">
-                    <svg-icon icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(270deg)" />
+                    <inline-svg icon-name="solid/angle-left" height="2em" width="2em" style="transform: rotate(270deg)" />
                 </button>
             </div>
         </div>
@@ -123,16 +123,15 @@
                 <div class="card-body">
                     <h5 class="card-title">Exceptions</h5>
                     <ul class="list-group">
-                        <li class="list-group-item">ArgumentNullException: <svg-icon height="1em" width="1em" /></li>
-                        <li class="list-group-item">FileNotFoundException: <svg-icon icon-name="fgjmvdlögjmd" /></li>
-                        <li class="list-group-item">XmlException: <svg-icon icon-name="brands/test" /></li>
+                        <li class="list-group-item">ArgumentNullException: <inline-svg height="1em" width="1em" /></li>
+                        <li class="list-group-item">FileNotFoundException: <inline-svg icon-name="fgjmvdlögjmd" /></li>
+                        <li class="list-group-item">XmlException: <inline-svg icon-name="brands/test" /></li>
+                        <li class="list-group-item">Outside of IconStore <inline-svg icon-name="../ad" /></li>
                     </ul>
                 </div>
             </div>
             <p>Regardless of the debug state, the height and width of the inline SVG is set to 0 if failing to load. No 404 or similar status code will reach the visitor - only an empty inline SVG element.</p>
         </div>
     </section>
-
-    <p><email mail-to="john.doe" /></p>
 
 </div>
