@@ -5,7 +5,15 @@ VisualStudioVersion = 17.1.32421.90
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HtmlExtensionLabs", "HtmlExtensionLabs\HtmlExtensionLabs.csproj", "{C06AC353-F879-4C7B-8E53-7069DEBFCB38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Taggarna.HtmlTagHelpers", "Taggarna.HtmlTagHelpers\Taggarna.HtmlTagHelpers.csproj", "{DD162A8B-26D3-4713-AD39-CDA0A6B4374F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Taggarna.HtmlTagHelpers", "Taggarna.HtmlTagHelpers\Taggarna.HtmlTagHelpers.csproj", "{DD162A8B-26D3-4713-AD39-CDA0A6B4374F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{86393E0E-5A86-4BC1-AC0E-3A9B4718CEEF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F92B54CD-E080-41C6-9A6F-49839A7673D5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{91E0C212-6336-4DBF-89D8-BE55887289BB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HtmlTagHelpers.Tests", "HtmlTagHelpers.Tests\HtmlTagHelpers.Tests.csproj", "{84116E40-920A-41D0-9EDA-972AFBC605E3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,9 +29,18 @@ Global
 		{DD162A8B-26D3-4713-AD39-CDA0A6B4374F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD162A8B-26D3-4713-AD39-CDA0A6B4374F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD162A8B-26D3-4713-AD39-CDA0A6B4374F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{84116E40-920A-41D0-9EDA-972AFBC605E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{84116E40-920A-41D0-9EDA-972AFBC605E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{84116E40-920A-41D0-9EDA-972AFBC605E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{84116E40-920A-41D0-9EDA-972AFBC605E3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C06AC353-F879-4C7B-8E53-7069DEBFCB38} = {91E0C212-6336-4DBF-89D8-BE55887289BB}
+		{DD162A8B-26D3-4713-AD39-CDA0A6B4374F} = {F92B54CD-E080-41C6-9A6F-49839A7673D5}
+		{84116E40-920A-41D0-9EDA-972AFBC605E3} = {86393E0E-5A86-4BC1-AC0E-3A9B4718CEEF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {8046CA2C-BC62-48E5-A868-5D9DBC337B82}

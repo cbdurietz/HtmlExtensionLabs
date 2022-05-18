@@ -35,37 +35,24 @@ namespace Taggarna.HtmlTagHelpers {
                 var timer = new Stopwatch();
                 timer.Start();
 
-                // If there's no IconName input, throw an exception.
-                if (string.IsNullOrEmpty(IconName)) {
-                    throw new ArgumentNullException("IconName"); //TODO: There's probably a better exception for this, since the missing 'IconName' parameter isn't really an argument of the specific method, but missing in the TagHelper.
-                }
-                // If trying to traverse outside of the defined Icon Store, throw an exception.
-                if (IconName.Contains("..")) {
-                    throw new ArgumentOutOfRangeException(); //TODO: There's probably a better exception for this, but this works for now.
-                }
-
-                // If there is no svg store cached at all, create one.
-                if (_memoryCache.Get<List<SvgResource>>("InlineSvgTagHelper") is null) {
-                    _memoryCache.Set("InlineSvgTagHelper", new List<SvgResource>());
+                // Check if the IconName is valid.
+                if (!IsValidIconName(IconName)) {
+                    throw new Exception();
                 }
 
                 // If the requested svg is already loaded into the cache, use that. Otherwise, load it from file.
-                var storedSvg = _memoryCache.Get<List<SvgResource>>("InlineSvgTagHelper").FirstOrDefault(x => x.Name == IconName);
-                HtmlDocument svgDoc;
-                SvgSource source;
-                if (storedSvg == null) {
-                    // Get the svg from file.
-                    svgDoc = CreateHtmlDocument(IconName);
-                    // Store the loaded svg into the cache for future use.
-                    _memoryCache.Get<List<SvgResource>>("InlineSvgTagHelper").Add(new SvgResource { Name = IconName, SvgDocument = svgDoc, Created = DateTime.UtcNow });
+                var source = SvgSource.Cache;
+                if (!_memoryCache.TryGetValue($"InlineSvgTagHelper_{IconName}", out HtmlDocument svgDocument)) {
+                    svgDocument = CreateHtmlDocument(IconName);
+
+                    var cacheEntryOptions = new MemoryCacheEntryOptions()
+                        .SetSlidingExpiration(TimeSpan.FromMinutes(10));
+
+                    _memoryCache.Set($"InlineSvgTagHelper_{IconName}", svgDocument, cacheEntryOptions);
                     source = SvgSource.File;
-                } else {
-                    // Get the svg from cache.
-                    svgDoc = storedSvg.SvgDocument;
-                    source = SvgSource.Cache;
                 }
 
-                var svgRoot = svgDoc.DocumentNode.SelectSingleNode("//svg");
+                var svgRoot = svgDocument.DocumentNode.SelectSingleNode("//svg");
                 var svgContent = svgRoot.WriteContentTo();
                 foreach (var itemAttribute in svgRoot.Attributes) {
                     output.Attributes.SetAttribute(itemAttribute.Name, itemAttribute.Value);
@@ -73,40 +60,25 @@ namespace Taggarna.HtmlTagHelpers {
                 output.Content.SetHtmlContent(svgContent);
 
                 timer.Stop();
-                Console.Write($"    Loaded file '");
+                Console.Write("    Loaded file '");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write(IconName);
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write($"' from ");
-                if (source == SvgSource.File) {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                } else {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                }
+                Console.Write("' from ");
+                Console.ForegroundColor = source == SvgSource.File ? ConsoleColor.Red : ConsoleColor.Green;
                 Console.Write(source);
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write($" in ");
+                Console.Write(" in ");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write($"{timer.Elapsed.Milliseconds}");
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write($"ms (");
+                Console.Write("ms (");
                 Console.ForegroundColor = ConsoleColor.White;
                 Console.Write($"{timer.Elapsed.Ticks}");
                 Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write($"ticks).");
+                Console.Write("ticks).");
                 Console.WriteLine();
 
-            } catch (FileNotFoundException e) {
-                Height = 0.ToString();
-                Width = 0.ToString();
-                if (_debug) {
-                    output.Attributes.SetAttribute("Exception", $"File not found. (Filename '{IconName}')");
-                }
-                Console.ForegroundColor = ConsoleColor.White;
-                Console.Write(IconName);
-                Console.ForegroundColor = ConsoleColor.Gray;
-                Console.Write($" : {e.Message}");
-                Console.WriteLine();
             } catch (Exception e) {
                 Height = 0.ToString();
                 Width = 0.ToString();
@@ -149,13 +121,20 @@ namespace Taggarna.HtmlTagHelpers {
                     throw new XmlException($"The loaded file is not a valid svg file. (File '{iconName}')");
                 }
             } catch (Exception e) {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
                 throw;
-            } finally {
-
             }
             return doc;
 
+        }
+
+        private bool IsValidIconName(string iconName) {
+            // If there's no IconName input, throw an exception.
+            if (string.IsNullOrEmpty(iconName)) {
+                return false;
+            }
+            // If trying to traverse outside of the defined Icon Store, throw an exception.
+            return !iconName.Contains("..");
         }
         private bool IsValidSvg(string str) {
             try {
