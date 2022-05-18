@@ -59,7 +59,7 @@
             sut.ProcessAsync(tagHelperContext, tagHelperOutput);
 
             // Assert
-            Assert.NotNull(sut);
+            Assert.Null(sut);
 
         }
     }
