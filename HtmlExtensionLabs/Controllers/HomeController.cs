@@ -15,6 +15,7 @@ namespace HtmlExtensionLabs.Controllers
 
         public IActionResult Index()
         {
+            _logger.LogInformation($"Entered IActionResult Index()");
             return View();
         }
 

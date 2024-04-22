@@ -16,11 +16,11 @@ namespace Taggarna.HtmlTagHelpers {
         public string? Style { get; set; } = null;
         public string? Class { get; set; } = null;
 
-        private IMemoryCache _memoryCache;
-        private IConfiguration _configuration;
+        private readonly IMemoryCache _memoryCache;
+        private readonly IConfiguration _configuration;
 
-        private string _iconStoreFolder; // = @"Assets/Icons"; //TODO: Should be set up to fetch from appsettings.
-        private bool _debug; // = true; //TODO: Should be set up to fetch from appsettings.
+        private readonly string _iconStoreFolder; // = @"Assets/Icons"; //TODO: Should be set up to fetch from appsettings.
+        private readonly bool _debug; // = true; //TODO: Should be set up to fetch from appsettings.
 
 
         public InlineSvgTagHelper(IConfiguration configuration, IMemoryCache memoryCache) {
@@ -37,7 +37,7 @@ namespace Taggarna.HtmlTagHelpers {
 
                 // Check if the IconName is valid.
                 if (!IsValidIconName(IconName)) {
-                    throw new Exception();
+                    throw new ArgumentException($"Invalid icon name: {IconName}");
                 }
 
                 // If the requested svg is already loaded into the cache, use that. Otherwise, load it from file.
